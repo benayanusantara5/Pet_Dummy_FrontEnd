@@ -1,0 +1,80 @@
+<div class="centerize">
+  <p-button (click)="showInsertDialog()" icon="pi pi-external-link" label="Insert"></p-button>
+  <p-button (click)="download()" label="Export"></p-button>
+</div>
+
+<p-dialog header="Insert New Pet" [(visible)]="displayInsert" [style]="{width: '50vw'}">
+    <div>
+      <h5>Input Pet Name</h5>
+      <span class="p-float-label">
+          <input id="float-input" type="text" pInputText [(ngModel)]="petname">
+          <label for="float-input">Pet Name</label>
+      </span>
+    </div>
+    <div>
+      <h5>Input Pet Animal</h5>
+      <span class="p-float-label">
+          <input id="float-input" type="text" pInputText [(ngModel)]="petanimal">
+          <label for="float-input">Pet Animal</label>
+      </span>
+    </div>
+    <div>
+      <h5>Input Pet Price</h5>
+      <div class="field col-12 md:col-3">
+        <p-inputNumber [(ngModel)]="petprice" mode="decimal" [showButtons]="true" inputId="minmax-buttons" >
+        </p-inputNumber>
+      </div>
+    </div>
+
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="insertPet()" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
+
+
+<div class="main-container">
+  <p-card *ngFor="let pet of pets" header="{{pet.name}}" subheader="{{pet.animal}}" [style]="{width: '360px'}" styleClass="p-card-shadow">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="https://cdn.idntimes.com/content-images/duniaku/post/20220725/amya-8a70704c4f1e803125f881be76f4fe22_600x400.png">
+    </ng-template>
+    <p>Price: IDR {{pet.price}}</p>
+   <ng-template pTemplate="footer">
+        <p-button label="Update" icon="pi pi-check" (click)="showUpdateDialog(pet.id, pet.name, pet.animal, pet.price)"></p-button>
+        <p-button label="Delete" icon="pi pi-times" styleClass="p-button-secondary" (click)="deletePet(pet.id)"></p-button>
+    </ng-template>
+
+    <p-dialog header="Update Pet" [(visible)]="displayUpdate" [style]="{width: '50vw'}">
+      <div>
+        <h5>Input Pet Name</h5>
+        <span class="p-float-label">
+            <input id="float-input" type="text" pInputText [(ngModel)]="upetname">
+            <label for="float-input">Pet Name</label>
+        </span>
+      </div>
+      <div>
+        <h5>Input Pet Animal</h5>
+        <span class="p-float-label">
+            <input id="float-input" type="text" pInputText [(ngModel)]="upetanimal">
+            <label for="float-input">Pet Animal</label>
+        </span>
+      </div>
+      <div>
+        <h5>Input Pet Price</h5>
+        <div class="field col-12 md:col-3">
+          <p-inputNumber [(ngModel)]="upetprice" mode="decimal" [showButtons]="true" inputId="minmax-buttons" >
+          </p-inputNumber>
+        </div>
+      </div>
+
+
+      <ng-template pTemplate="footer">
+          <p-button icon="pi pi-check" (click)="updatePet()" label="Ok" styleClass="p-button-text"></p-button>
+      </ng-template>
+    </p-dialog>
+
+
+  </p-card>
+</div>
+
+

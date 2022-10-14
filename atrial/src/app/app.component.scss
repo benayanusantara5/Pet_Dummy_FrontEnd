@@ -1,0 +1,21 @@
+
+.main-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.centerize{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 1% 0%;
+}
+
+p-card{
+  margin: 0.5% 0.5%;
+}
+
+p-button{
+  margin: 0.5% 0.5%;
+}
